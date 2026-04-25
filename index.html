@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sean Richardson</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --fg: #1a1a1a;
+      --fg-secondary: #555;
+      --fg-tertiary: #888;
+      --bg: #faf9f7;
+      --accent: #8b0000;
+      --link: #1a4a6e;
+      --link-hover: #8b0000;
+      --rule: #ccc;
+      --max-w: 600px;
+      --body-size: 16px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --fg: #d4d0c8;
+        --fg-secondary: #a09a8e;
+        --fg-tertiary: #787068;
+        --bg: #1c1b19;
+        --accent: #c06060;
+        --link: #88b4d0;
+        --link-hover: #c06060;
+        --rule: #3a3830;
+      }
+    }
+
+    html {
+      font-size: var(--body-size);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      color: var(--fg);
+      background: var(--bg);
+      line-height: 1.65;
+      padding: 4rem 1.5rem 6rem;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      margin-bottom: 2.5rem;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.6rem;
+    }
+
+    .tagline {
+      color: var(--fg-secondary);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .tagline a {
+      color: var(--fg-secondary);
+      text-decoration-color: var(--rule);
+    }
+
+    .tagline a:hover {
+      color: var(--link-hover);
+      text-decoration-color: var(--link-hover);
+    }
+
+    .contact {
+      margin-top: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--fg-tertiary);
+      letter-spacing: 0.02em;
+    }
+
+    .contact a {
+      color: var(--fg-tertiary);
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      color: var(--link-hover);
+    }
+
+    .contact .sep {
+      margin: 0 0.4em;
+      color: var(--rule);
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 2.2rem;
+    }
+
+    h2 {
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--fg-tertiary);
+      margin-bottom: 1rem;
+      padding-bottom: 0.3rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* Papers */
+    .paper {
+      margin-bottom: 1rem;
+    }
+
+    .paper-title {
+      font-weight: 500;
+    }
+
+    .paper-title a {
+      color: var(--fg);
+      text-decoration-color: var(--rule);
+      text-underline-offset: 2px;
+    }
+
+    .paper-title a:hover {
+      color: var(--link-hover);
+      text-decoration-color: var(--link-hover);
+    }
+
+    .paper-authors {
+      font-size: 0.9rem;
+      color: var(--fg-secondary);
+    }
+
+    .paper-venue {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--fg-tertiary);
+    }
+
+    .me {
+      /* not bold, just distinguish slightly */
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+      text-underline-offset: 2px;
+    }
+
+    /* Readings */
+    .reading {
+      margin-bottom: 0.9rem;
+    }
+
+    .reading-title {
+      font-weight: 500;
+    }
+
+    .reading-title a {
+      color: var(--fg);
+      text-decoration-color: var(--rule);
+      text-underline-offset: 2px;
+    }
+
+    .reading-title a:hover {
+      color: var(--link-hover);
+      text-decoration-color: var(--link-hover);
+    }
+
+    .reading-author {
+      font-size: 0.9rem;
+      color: var(--fg-secondary);
+    }
+
+    .reading-note {
+      font-size: 0.88rem;
+      color: var(--fg-secondary);
+      font-style: italic;
+      margin-top: 0.15rem;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule);
+      font-size: 0.8rem;
+      color: var(--fg-tertiary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Links global */
+    a {
+      color: var(--link);
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+      text-underline-offset: 2px;
+      transition: color 0.15s;
+    }
+
+    a:hover {
+      color: var(--link-hover);
+      text-decoration-color: var(--link-hover);
+    }
+
+    /* Responsive */
+    @media (max-width: 500px) {
+      body {
+        padding: 2.5rem 1.2rem 4rem;
+      }
+      h1 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Sean Richardson</h1>
+  <p class="tagline">
+    PhD student in Statistics at <a href="https://statistics.berkeley.edu/">UC Berkeley</a>.
+    I work on causal inference, AI evaluation, and mechanistic interpretability.
+    Previously at <a href="https://stat.uchicago.edu/">UChicago</a> (MS, advised by <a href="https://www.victorveitch.com/">Victor Veitch</a>;
+    also a year of law school, long story)
+    and <a href="https://philosophy.ucla.edu/">UCLA</a> (BA Philosophy).
+  </p>
+  <p class="contact">
+    <a href="mailto:seanrichardson@berkeley.edu">seanrichardson@berkeley.edu</a>
+    <span class="sep">/</span>
+    <a href="https://scholar.google.com/citations?user=YOUR_ID">scholar</a>
+    <span class="sep">/</span>
+    <a href="https://github.com/smrichardson">github</a>
+    <span class="sep">/</span>
+    <a href="https://x.com/bayesian_wasian">@bayesian_wasian</a>
+  </p>
+</header>
+
+<section>
+  <h2>Papers</h2>
+
+  <div class="paper">
+    <div class="paper-title"><a href="https://arxiv.org/abs/2410.11348">RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals</a></div>
+    <div class="paper-authors">David Reber, <span class="me">Sean Richardson</span>, Todd Nief, Cristina Garbacea, Victor Veitch</div>
+    <div class="paper-venue">ICML 2025</div>
+  </div>
+
+  <div class="paper">
+    <div class="paper-title"><a href="https://arxiv.org/abs/2504.02234">LLM Social Simulations Are a Promising Research Method</a></div>
+    <div class="paper-authors">Jacy Reese Anthis, Ryan Liu, <span class="me">Sean Richardson</span>, et al.</div>
+    <div class="paper-venue">ICML 2025 (Position Paper)</div>
+  </div>
+
+  <div class="paper">
+    <div class="paper-title"><a href="https://arxiv.org/abs/2506.20746">Dynamic Weight Grafting: Localizing Finetuned Factual Knowledge in Transformers</a></div>
+    <div class="paper-authors">Todd Nief, David Reber, <span class="me">Sean Richardson</span>, Ari Holtzman</div>
+    <div class="paper-venue">ICLR 2026</div>
+  </div>
+
+  <div class="paper">
+    <div class="paper-title"><a href="https://arxiv.org/abs/2506.01197">Incorporating Hierarchical Semantics in Sparse Autoencoder Architectures</a></div>
+    <div class="paper-authors">Mark Muchane, <span class="me">Sean Richardson</span>, Kiho Park, Victor Veitch</div>
+    <div class="paper-venue">Under review</div>
+  </div>
+
+  <div class="paper">
+    <div class="paper-title">On the Significance of Softmax Geometry: Interpretability and Token Decoding</div>
+    <div class="paper-authors">Yibo Jiang, Lin Gui, <span class="me">Sean Richardson</span>, et al.</div>
+    <div class="paper-venue">Under review</div>
+  </div>
+</section>
+
+<section>
+  <h2>Writing</h2>
+  <p style="color: var(--fg-tertiary); font-style: italic;">Perpetually forthcoming.</p>
+</section>
+
+<section>
+  <h2>Readings &amp; Recommendations</h2>
+
+  <div class="reading">
+    <div class="reading-title"><a href="#">Placeholder: Paper or Book Title</a></div>
+    <div class="reading-author">Author Name</div>
+    <div class="reading-note">A sentence on why you like it or what it changed for you.</div>
+  </div>
+
+  <div class="reading">
+    <div class="reading-title"><a href="#">Placeholder: Another Title</a></div>
+    <div class="reading-author">Author Name</div>
+    <div class="reading-note">Optional note.</div>
+  </div>
+
+  <div class="reading">
+    <div class="reading-title"><a href="#">Placeholder: One More</a></div>
+    <div class="reading-author">Author Name</div>
+    <div class="reading-note">You can remove the note field for entries where you don't have anything to say.</div>
+  </div>
+</section>
+
+<section>
+  <h2>Other</h2>
+  <p>
+    GSI for <a href="https://smrichardson.github.io/stat214">Stat 214: Applied Statistics and Machine Learning</a> (Bin Yu).
+    Board member at <a href="https://www.sentienceinstitute.org/">Sentience Institute</a>.
+    Facilitator for the <a href="https://www.sentientfutures.org/">AI&times;Animals Fellowship</a>.
+    Co-organizer of the <a href="#">AI Interpretability Reading Group</a> at Berkeley
+    (with <a href="https://www.stat.berkeley.edu/~wfithian/">Will Fithian</a> and
+    <a href="https://philosophy.berkeley.edu/people/detail/wesholliday">Wesley Holliday</a>).
+  </p>
+</section>
+
+<footer>
+  Last updated April 2026.
+</footer>
+
+</body>
+</html>
