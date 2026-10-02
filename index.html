@@ -68,6 +68,10 @@
       line-height: 1.55;
     }
 
+    .tagline + .tagline {
+      margin-top: 0.7rem;
+    }
+
     .tagline a {
       color: var(--fg-secondary);
       text-decoration-color: var(--rule);
@@ -79,7 +83,7 @@
     }
 
     .contact {
-      margin-top: 0.5rem;
+      margin-top: 0.9rem;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.75rem;
       color: var(--fg-tertiary);
@@ -225,14 +229,21 @@
 <header>
   <h1>Sean Richardson</h1>
   <p class="tagline">
-    PhD student in Statistics at <a href="https://statistics.berkeley.edu/">UC Berkeley</a>.
-    I work on causal inference, AI evaluation, and mechanistic interpretability.
+    PhD student in Statistics at <a href="https://statistics.berkeley.edu/">UC Berkeley</a>,
+    working with <a href="https://www.amandacoston.com/">Amanda Coston</a>.
     Previously at <a href="https://stat.uchicago.edu/">UChicago</a> (MS, advised by <a href="https://www.victorveitch.com/">Victor Veitch</a>;
-    also a year of law school, made a pivot)
+    also a year of <a href="https://www.law.uchicago.edu/">law school</a>, made a pivot)
     and <a href="https://philosophy.ucla.edu/">UCLA</a> (BA Philosophy).
+  </p>
+  <p class="tagline">
+    During my MS, I worked on understanding large language models and the reward models which shape them. I'm currently working on statistical challenges in evaluating AI systems, in particular what can be credibly concluded about a
+    model's performance when the evaluation data differs from the
+    setting we care about. More broadly, I'm interested in human-AI interaction and causality (causal inference and causal representation learning).
   </p>
   <p class="contact">
     <a href="mailto:seanrichardson@berkeley.edu">seanrichardson@berkeley.edu</a>
+    <span class="sep">/</span>
+    <a href="cv.pdf">cv</a>
     <span class="sep">/</span>
     <a href="https://scholar.google.com/citations?user=sViyVfIAAAAJ&hl=en">scholar</a>
     <span class="sep">/</span>
@@ -246,15 +257,9 @@
   <h2>Papers</h2>
 
   <div class="paper">
-    <div class="paper-title"><a href="https://arxiv.org/abs/2410.11348">RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals</a></div>
-    <div class="paper-authors">David Reber, <span class="me">Sean Richardson</span>, Todd Nief, Cristina Garbacea, Victor Veitch</div>
-    <div class="paper-venue">ICML 2025</div>
-  </div>
-
-  <div class="paper">
-    <div class="paper-title"><a href="https://arxiv.org/abs/2504.02234">LLM Social Simulations Are a Promising Research Method</a></div>
-    <div class="paper-authors">Jacy Reese Anthis, Ryan Liu, <span class="me">Sean Richardson</span>, et al.</div>
-    <div class="paper-venue">ICML 2025 (Position Paper)</div>
+    <div class="paper-title"><a href="https://openreview.net/forum?id=uChoQnR1tj">The Evaluation Gap: Joint Bounds under Distribution Shift, Selective Labels, and Outcome Measurement Error</a></div>
+    <div class="paper-authors"><span class="me">Sean Richardson</span>, Amanda Coston, Ashesh Rambachan</div>
+    <div class="paper-venue">NeurIPS 2026 Workshop: Can We Trust AI Evaluation?</div>
   </div>
 
   <div class="paper">
@@ -266,19 +271,26 @@
   <div class="paper">
     <div class="paper-title"><a href="https://arxiv.org/abs/2506.01197">Incorporating Hierarchical Semantics in Sparse Autoencoder Architectures</a></div>
     <div class="paper-authors">Mark Muchane, <span class="me">Sean Richardson</span>, Kiho Park, Victor Veitch</div>
-    <div class="paper-venue">Under review</div>
+    <div class="paper-venue">NeurIPS 2026</div>
+  </div>
+
+  <div class="paper">
+    <div class="paper-title"><a href="https://arxiv.org/abs/2504.02234">LLM Social Simulations Are a Promising Research Method</a></div>
+    <div class="paper-authors">Jacy Reese Anthis, Ryan Liu, <span class="me">Sean Richardson</span>, et al.</div>
+    <div class="paper-venue">ICML 2025 (Position Paper)</div>
+  </div>
+
+  <div class="paper">
+    <div class="paper-title"><a href="https://arxiv.org/abs/2410.11348">RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals</a></div>
+    <div class="paper-authors">David Reber, <span class="me">Sean Richardson</span>, Todd Nief, Cristina Garbacea, Victor Veitch</div>
+    <div class="paper-venue">ICML 2025</div>
   </div>
 
   <div class="paper">
     <div class="paper-title">On the Significance of Softmax Geometry: Interpretability and Token Decoding</div>
     <div class="paper-authors">Yibo Jiang, Lin Gui, <span class="me">Sean Richardson</span>, et al.</div>
-    <div class="paper-venue">Under review</div>
+    <div class="paper-venue">Working paper</div>
   </div>
-</section>
-
-<section>
-  <h2>Writing</h2>
-  <p style="color: var(--fg-tertiary); font-style: italic;">Something will go here eventually.</p>
 </section>
 
 <section>
@@ -319,17 +331,17 @@
 <section>
   <h2>Other</h2>
   <p>
-    GSI for <a href="https://smrichardson.github.io/stat214">Stat 214: Applied Statistics and Machine Learning</a> (Bin Yu).
     Board member at <a href="https://www.sentienceinstitute.org/">Sentience Institute</a>.
     Facilitator for the <a href="https://www.sentientfutures.org/">AI&times;Animals Fellowship</a>.
-    Co-organizer of the <a href="https://wfithian.github.io/ai-interpretability/">AI Interpretability Reading Group</a> at Berkeley
+    Previously co-organized the <a href="https://wfithian.github.io/ai-interpretability/">AI Interpretability Reading Group</a> at Berkeley
     (with <a href="https://www.stat.berkeley.edu/~wfithian/">Will Fithian</a> and
-    <a href="https://philosophy.berkeley.edu/people/detail/wesholliday">Wes Holliday</a>).
+    <a href="https://philosophy.berkeley.edu/people/detail/wesholliday">Wes Holliday</a>), worked as GSI for <a href="https://smrichardson.github.io/stat214">Stat 214: Applied Statistics and Machine Learning</a> (Bin Yu),
+    and worked as Regulatory Fellow at the <a href="https://gfi.org/">Good Food Institute</a>.
   </p>
 </section>
 
 <footer>
-  Last updated April 2026.
+  Last updated October 2026.
 </footer>
 
 </body>
