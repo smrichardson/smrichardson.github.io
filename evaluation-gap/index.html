@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Evaluation Gap — Sean Richardson</title>
+  <meta name="description" content="Joint Bounds under Distribution Shift, Selective Labels, and Outcome Measurement Error. NeurIPS 2026 Workshop: Can We Trust AI Evaluation?" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f8f9fa;
+      --border: #e5e7eb;
+      --text: #111827;
+      --muted: #4b5563;
+      --subtle: #6b7280;
+      --accent: #1d4ed8;
+      --accent-soft: #eff6ff;
+      --code-bg: #f3f4f6;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d1117;
+        --surface: #161b22;
+        --border: #30363d;
+        --text: #e6edf3;
+        --muted: #9da7b3;
+        --subtle: #7d8590;
+        --accent: #58a6ff;
+        --accent-soft: #13233a;
+        --code-bg: #161b22;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.65;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .back-link {
+      display: inline-block;
+      font-size: 0.9rem;
+      color: var(--subtle);
+      text-decoration: none;
+      margin-bottom: 28px;
+    }
+
+    .back-link:hover {
+      color: var(--accent);
+    }
+
+    .venue-tag {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.3rem);
+      font-weight: 700;
+      line-height: 1.22;
+      letter-spacing: -0.015em;
+      margin: 0 0 18px;
+    }
+
+    .authors {
+      font-size: 1.05rem;
+      margin: 0 0 4px;
+    }
+
+    .authors a {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .authors a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .affiliations {
+      font-size: 0.9rem;
+      color: var(--subtle);
+      margin: 0 0 22px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.92;
+      color: #ffffff;
+    }
+
+    .figure-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 20px 16px;
+      margin-bottom: 38px;
+    }
+
+    .figure-card svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .caption {
+      font-size: 0.87rem;
+      color: var(--muted);
+      margin: 12px 0 0;
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 34px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: var(--text);
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin: 16px 0 28px;
+    }
+
+    .pillar {
+      padding: 15px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .pillar-title {
+      font-weight: 600;
+      font-size: 0.98rem;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+
+    .pillar-body {
+      font-size: 0.93rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .bibtex-wrap {
+      position: relative;
+    }
+
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.84rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      background: var(--bg);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .copy-btn:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    footer {
+      margin-top: 56px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--subtle);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    footer a {
+      color: var(--subtle);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back-link" href="https://smrichardson.github.io/">&larr; Sean Richardson</a>
+
+    <div>
+      <span class="venue-tag">NeurIPS 2026 Workshop &middot; Can We Trust AI Evaluation?</span>
+    </div>
+
+    <h1>The Evaluation Gap: Joint Bounds under Distribution Shift, Selective Labels, and Outcome Measurement Error</h1>
+
+    <p class="authors">
+      <a href="https://smrichardson.github.io/">Sean Richardson</a><sup>1</sup>,
+      <a href="https://amandacoston.github.io/">Amanda Coston</a><sup>1</sup>,
+      <a href="https://asheshrambachan.github.io/">Ashesh Rambachan</a><sup>2</sup>
+    </p>
+    <p class="affiliations">
+      <sup>1</sup>UC Berkeley &nbsp;&middot;&nbsp; <sup>2</sup>MIT
+    </p>
+
+    <div class="links">
+      <a class="btn btn-primary" href="https://openreview.net/forum?id=uChoQnR1tj" target="_blank" rel="noopener">OpenReview</a>
+      <a class="btn" href="https://openreview.net/pdf?id=uChoQnR1tj" target="_blank" rel="noopener">PDF</a>
+      <!-- Replace # with your GitHub repository link when public -->
+      <a class="btn" href="#" onclick="alert('Code & Lean/rational verification suite link coming soon.'); return false;">Code &amp; Verification</a>
+      <button class="btn" type="button" onclick="copyBibtex()">Copy BibTeX</button>
+    </div>
+
+    <!-- Optional: replace this figure card with <img src="fig1.png" alt="..."> if you prefer a figure directly from the PDF -->
+    <figure class="figure-card">
+      <svg viewBox="0 0 720 195" role="img" aria-label="Unified confounding template and sequential evaluation chain">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="currentColor" opacity="0.65" />
+          </marker>
+        </defs>
+
+        <!-- Left Panel: Shared Confounding Template -->
+        <rect x="8" y="8" width="225" height="179" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.18" />
+        <text x="120" y="30" text-anchor="middle" font-size="11.5" font-weight="600" fill="currentColor" opacity="0.85">1. Shared Confounding Template</text>
+
+        <!-- U_Z node -->
+        <circle cx="120" cy="70" r="19" fill="none" stroke="currentColor" stroke-dasharray="3 2" stroke-opacity="0.7" />
+        <text x="120" y="74" text-anchor="middle" font-size="12" font-style="italic" fill="currentColor">U<tspan dy="3" font-size="9">Z</tspan></text>
+
+        <!-- Y* node -->
+        <circle cx="66" cy="136" r="19" fill="none" stroke="currentColor" stroke-opacity="0.75" />
+        <text x="66" y="140" text-anchor="middle" font-size="12" font-style="italic" fill="currentColor">Y*</text>
+
+        <!-- Z node -->
+        <circle cx="174" cy="136" r="19" fill="none" stroke="currentColor" stroke-opacity="0.75" />
+        <text x="174" y="140" text-anchor="middle" font-size="12" font-style="italic" fill="currentColor">Z</text>
+
+        <!-- Arrows -->
+        <line x1="107" y1="86" x2="79" y2="119" stroke="currentColor" stroke-opacity="0.65" stroke-width="1.4" marker-end="url(#arrow)" />
+        <line x1="133" y1="86" x2="161" y2="119" stroke="currentColor" stroke-opacity="0.65" stroke-width="1.4" marker-end="url(#arrow)" />
+
+        <text x="120" y="174" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.65">Z &isin; {C (proxy), D (select), R (shift)}</text>
+
+        <!-- Right Panel: Ordered Evaluation Chain -->
+        <rect x="249" y="8" width="463" height="179" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.18" />
+        <text x="480" y="30" text-anchor="middle" font-size="11.5" font-weight="600" fill="currentColor" opacity="0.85">2. Coupled Evaluation Chain (Each Bias Shifts the Next Anchor)</text>
+
+        <!-- Stage 1 -->
+        <rect x="267" y="64" width="96" height="58" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.45" />
+        <text x="315" y="88" text-anchor="middle" font-size="11.5" font-weight="600" fill="currentColor">E<tspan dy="3" font-size="8.5">S</tspan><tspan dy="-3">[Y | x, D=1]</tspan></text>
+        <text x="315" y="108" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.65">Observed Proxy</text>
+
+        <!-- Stage 2 -->
+        <rect x="395" y="64" width="96" height="58" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.45" />
+        <text x="443" y="88" text-anchor="middle" font-size="11.5" font-weight="600" fill="currentColor">E<tspan dy="3" font-size="8.5">S</tspan><tspan dy="-3">[Y* | x, D=1]</tspan></text>
+        <text x="443" y="108" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.65">Labeled True</text>
+
+        <!-- Stage 3 -->
+        <rect x="523" y="64" width="76" height="58" rx="6" fill="none" stroke="currentColor" stroke-opacity="0.45" />
+        <text x="561" y="88" text-anchor="middle" font-size="11.5" font-weight="600" fill="currentColor">E<tspan dy="3" font-size="8.5">S</tspan><tspan dy="-3">[Y* | x]</tspan></text>
+        <text x="561" y="108" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.65">Source Pop.</text>
+
+        <!-- Stage 4 -->
+        <rect x="631" y="64" width="66" height="58" rx="6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.85" />
+        <text x="664" y="88" text-anchor="middle" font-size="11.5" font-weight="700" fill="currentColor">E<tspan dy="3" font-size="8.5">T</tspan><tspan dy="-3">[Y* | x]</tspan></text>
+        <text x="664" y="108" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.75">Target</text>
+
+        <!-- Chain Connectors -->
+        <line x1="363" y1="93" x2="391" y2="93" stroke="currentColor" stroke-opacity="0.7" stroke-width="1.4" marker-end="url(#arrow)" />
+        <text x="379" y="55" text-anchor="middle" font-size="10" font-weight="600" fill="currentColor" opacity="0.75">&Gamma;<tspan dy="2" font-size="8">C</tspan></text>
+
+        <line x1="491" y1="93" x2="519" y2="93" stroke="currentColor" stroke-opacity="0.7" stroke-width="1.4" marker-end="url(#arrow)" />
+        <text x="507" y="55" text-anchor="middle" font-size="10" font-weight="600" fill="currentColor" opacity="0.75">&Gamma;<tspan dy="2" font-size="8">D</tspan></text>
+
+        <line x1="599" y1="93" x2="627" y2="93" stroke="currentColor" stroke-opacity="0.7" stroke-width="1.4" marker-end="url(#arrow)" />
+        <text x="615" y="55" text-anchor="middle" font-size="10" font-weight="600" fill="currentColor" opacity="0.75">&Gamma;<tspan dy="2" font-size="8">R</tspan></text>
+
+        <text x="480" y="156" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.65">Joint identification enforces a single coherent distribution across all three links</text>
+        <text x="480" y="172" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.65">(and strictly tightens when U<tspan dy="2" font-size="8">D</tspan><tspan dy="-2"> &perp; U</tspan><tspan dy="2" font-size="8">R</tspan><tspan dy="-2">).</tspan></text>
+      </svg>
+      <figcaption class="caption">
+        <strong>Structural unification.</strong> Outcome measurement error (<em>C</em>), selective labels (<em>D</em>), and distribution shift (<em>R</em>) share a common confounding structure and sit on a single ordered sensitivity chain.
+      </figcaption>
+    </figure>
+
+    <h2>Abstract</h2>
+    <p>
+      Real-world machine learning evaluations rarely fail for a single isolated reason. In high-stakes domains such as healthcare and public policy, distribution shift between source and target populations, selective label observation, and proxy outcome measurement error routinely co-occur. Existing sensitivity analyses typically address these obstacles one at a time, leaving practitioners to combine single-bias bounds ad hoc.
+    </p>
+    <p>
+      We place all three obstacles onto a unified confounding template and an ordered sensitivity chain, deriving closed-form sharp bounds on target performance when they act simultaneously. We prove an <em>Anchoring Lemma</em> showing why naive composition of single-bias intervals is invalid—earlier obstacles shift the baseline conditional mean where later sensitivity tilts peak—while maximizing over all anchors produces overly wide intervals. Finally, we show that the latent causal architecture governing the unobservables matters: allowing dependent or shared drivers yields zero tightening beyond the unrestricted joint bound, whereas independent drivers strictly tighten the identified region via a graphical d-separation criterion.
+    </p>
+
+    <h2>Core Contributions</h2>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-title">1. Unified Confounding Structure</div>
+        <p class="pillar-body">
+          Formalizes outcome measurement error, selective labels, and distribution shift through a single confounding template—an unobserved driver <em>U<sub>Z</sub></em> affecting both the true outcome <em>Y*</em> and a binary indicator <em>Z</em>—linked sequentially from observed proxy performance to target population risk.
+        </p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">2. Anchoring &amp; Closed-Form Joint Sharpness</div>
+        <p class="pillar-body">
+          Demonstrates that single-bias bounds cannot be validly added because upstream obstacles shift the anchor at which downstream tilts peak. Enforcing a single consistent distribution across all three mechanisms yields closed-form sharp bounds without requiring knowledge of the target population share.
+        </p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">3. Latent Causal Architecture</div>
+        <p class="pillar-body">
+          Establishes how cross-mechanism dependence among unobservables shapes partial identification: dependent drivers add no identifying power over a single shared driver, whereas independent drivers (<em>U<sub>D</sub> &perp; U<sub>R</sub></em>) strictly tighten the sharp interval.
+        </p>
+      </div>
+    </div>
+
+    <h2>Citation</h2>
+    <div class="bibtex-wrap">
+      <button class="copy-btn" id="copy-status" type="button" onclick="copyBibtex()">Copy</button>
+      <pre id="bibtex">@inproceedings{richardson2026evaluation,
+  title     = {The Evaluation Gap: Joint Bounds under Distribution Shift, Selective Labels, and Outcome Measurement Error},
+  author    = {Richardson, Sean and Coston, Amanda and Rambachan, Ashesh},
+  booktitle = {NeurIPS 2026 Workshop: Can We Trust AI Evaluation?},
+  year      = {2026},
+  url       = {https://openreview.net/forum?id=uChoQnR1tj}
+}</pre>
+    </div>
+
+    <footer>
+      <span>Sean Richardson &middot; UC Berkeley</span>
+      <a href="https://smrichardson.github.io/">smrichardson.github.io</a>
+    </footer>
+  </main>
+
+  <script>
+    function copyBibtex() {
+      const text = document.getElementById("bibtex").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById("copy-status");
+        btn.textContent = "Copied!";
+        setTimeout(() => { btn.textContent = "Copy"; }, 1800);
+      });
+    }
+  </script>
+</body>
+</html>
