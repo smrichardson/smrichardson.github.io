@@ -155,19 +155,80 @@
       color: var(--fg-tertiary);
     }
 
-    .paper-venue a {
+    .paper-venue a,
+    .summary-btn {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.85rem;
       font-style: normal;
       color: var(--link);
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+      text-underline-offset: 2px;
+      transition: color 0.15s, text-decoration-color 0.15s;
     }
 
-    .paper-venue a:hover {
+    .paper-venue a:hover,
+    .summary-btn:hover {
       color: var(--link-hover);
+      text-decoration-color: var(--link-hover);
     }
 
     .me {
       text-decoration: underline;
       text-decoration-color: var(--rule);
       text-underline-offset: 2px;
+    }
+
+    /* Inline Paper Summary Drawer */
+    .paper-summary {
+      display: none;
+      margin-top: 0.65rem;
+      margin-bottom: 0.4rem;
+      padding: 0.95rem 1.15rem;
+      background: var(--bg-tint);
+      border-left: 2px solid var(--rule);
+      font-size: 0.88rem;
+      line-height: 1.58;
+      color: var(--fg-secondary);
+    }
+
+    .paper-summary.open {
+      display: block;
+    }
+
+    .paper-summary svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0.15rem 0 0.85rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .paper-summary p {
+      margin-bottom: 0.6rem;
+    }
+
+    .paper-summary p:last-child {
+      margin-bottom: 0;
+    }
+
+    .paper-summary strong {
+      font-weight: 600;
+      color: var(--fg);
+    }
+
+    .summary-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--fg-tertiary);
+      margin-right: 0.35rem;
     }
 
     /* Readings */
@@ -218,6 +279,7 @@
         padding: 2.5rem 1.2rem 4rem;
       }
       h1 { font-size: 1.4rem; }
+      .paper-summary { padding: 0.8rem 0.9rem; }
     }
   </style>
 </head>
@@ -226,7 +288,8 @@
 <header>
   <h1>Sean Richardson</h1>
   <p class="tagline">
-    PhD student in Statistics at <a href="https://statistics.berkeley.edu/">UC Berkeley</a>.
+    PhD student in Statistics at <a href="https://statistics.berkeley.edu/">UC Berkeley</a>,
+    working with <a href="https://www.amandacoston.com/">Amanda Coston</a>.
     Previously at <a href="https://stat.uchicago.edu/">UChicago</a> (MS, advised by <a href="https://www.victorveitch.com/">Victor Veitch</a>;
     also a year of <a href="https://www.law.uchicago.edu/">law school</a>, made a pivot)
     and <a href="https://philosophy.ucla.edu/">UCLA</a> (BA Philosophy).
@@ -253,7 +316,113 @@
   <div class="paper">
     <div class="paper-title"><a href="https://openreview.net/forum?id=uChoQnR1tj">The Evaluation Gap: Joint Bounds under Distribution Shift, Selective Labels, and Outcome Measurement Error</a></div>
     <div class="paper-authors"><span class="me">Sean Richardson</span>, Amanda Coston, Ashesh Rambachan</div>
-    <div class="paper-venue">NeurIPS 2026 Workshop: Can We Trust AI Evaluation?</div>
+    <div class="paper-venue">
+      NeurIPS 2026 Workshop: Can We Trust AI Evaluation? &middot;
+      <button type="button" class="summary-btn" aria-expanded="false" onclick="toggleSummary('eval-gap-summary', this)">summary</button> &middot;
+      <a href="https://openreview.net/pdf?id=uChoQnR1tj">pdf</a>
+    </div>
+
+    <div id="eval-gap-summary" class="paper-summary">
+      <svg viewBox="0 0 920 285" role="img" aria-label="Shared confounding structure and data-gating order versus reverse sensitivity identification chain">
+        <defs>
+          <marker id="arr-ink" viewBox="0 0 10 8" refX="8.5" refY="4" markerWidth="6.5" markerHeight="5.2" orient="auto">
+            <path d="M 0 0.5 L 9.5 4 L 0 7.5 L 2.2 4 z" fill="#1a1a1a" />
+          </marker>
+          <marker id="arr-muted" viewBox="0 0 10 8" refX="8.5" refY="4" markerWidth="6.5" markerHeight="5.2" orient="auto">
+            <path d="M 0 0.5 L 9.5 4 L 0 7.5 L 2.2 4 z" fill="#6b655d" />
+          </marker>
+          <marker id="arr-crimson" viewBox="0 0 10 8" refX="8.5" refY="4" markerWidth="6.5" markerHeight="5.2" orient="auto">
+            <path d="M 0 0.5 L 9.5 4 L 0 7.5 L 2.2 4 z" fill="#8b0000" />
+          </marker>
+        </defs>
+
+        <!-- Panel (a) Shared Confounding Structure -->
+        <text x="122" y="18" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#857f77" letter-spacing="0.04em">(a) Shared Confounding Structure</text>
+
+        <rect x="44" y="46" width="156" height="44" rx="22" fill="#faf9f7" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="4 3" />
+        <text x="122" y="66" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="14" font-style="italic" fill="#1a1a1a">Unobserved Factor</text>
+        <text x="122" y="81" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#857f77">latent confounder</text>
+
+        <line x1="94" y1="90" x2="60" y2="146" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#arr-ink)" />
+        <line x1="150" y1="90" x2="184" y2="146" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#arr-ink)" />
+
+        <rect x="10" y="152" width="102" height="44" rx="4" fill="#faf9f7" stroke="#1a1a1a" stroke-width="1.2" />
+        <text x="61" y="172" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="13.5" font-weight="500" fill="#1a1a1a">True Outcome</text>
+        <text x="61" y="187" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.2" fill="#857f77">construct</text>
+
+        <rect x="126" y="152" width="116" height="44" rx="4" fill="#faf9f7" stroke="#1a1a1a" stroke-width="1.2" />
+        <text x="184" y="172" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="13.5" font-weight="500" fill="#1a1a1a">Data-Gating</text>
+        <text x="184" y="187" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.2" fill="#857f77">indicator</text>
+
+        <text x="122" y="228" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="12.5" font-style="italic" fill="#55524d">in-distribution &middot; selected &middot; measured</text>
+        <text x="122" y="248" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.8" fill="#8b0000">1 sensitivity model per link</text>
+
+        <!-- Divider -->
+        <line x1="258" y1="10" x2="258" y2="270" stroke="#d8d3c8" stroke-width="1" />
+
+        <!-- Panel (b) Data-Gating Order vs. Reverse Identification -->
+        <text x="588" y="18" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#857f77" letter-spacing="0.04em">(b) Data-Gating Order vs. Reverse Identification</text>
+        <text x="588" y="42" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b655d">DATA-GATING ORDER (HOW EVALUATION DATA IS FILTERED &amp; RECORDED) &rarr;</text>
+
+        <!-- Top Forward Brackets -->
+        <text x="426" y="66" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="13" font-weight="500" fill="#1a1a1a">1. Distribution Shift</text>
+        <text x="426" y="79" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.2" fill="#857f77">source differs from target</text>
+        <path d="M 356 114 L 356 88 L 496 88 L 496 111" fill="none" stroke="#6b655d" stroke-width="1.15" marker-end="url(#arr-muted)" />
+
+        <text x="602" y="66" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="13" font-weight="500" fill="#1a1a1a">2. Selective Labels</text>
+        <text x="602" y="79" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.2" fill="#857f77">subset gated for outcomes</text>
+        <path d="M 532 114 L 532 88 L 672 88 L 672 111" fill="none" stroke="#6b655d" stroke-width="1.15" marker-end="url(#arr-muted)" />
+
+        <text x="778" y="66" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="13" font-weight="500" fill="#1a1a1a">3. Measurement Error</text>
+        <text x="778" y="79" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.2" fill="#857f77">proxy recorded instead</text>
+        <path d="M 708 114 L 708 88 L 848 88 L 848 111" fill="none" stroke="#6b655d" stroke-width="1.15" marker-end="url(#arr-muted)" />
+
+        <!-- Stage Boxes -->
+        <rect x="276" y="118" width="124" height="58" rx="3" fill="#faf9f7" stroke="#8b0000" stroke-width="1.5" />
+        <text x="338" y="143" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="14.5" font-weight="600" fill="#1a1a1a">Target Setting</text>
+        <text x="338" y="161" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.3" fill="#8b0000">true outcome (goal)</text>
+
+        <rect x="452" y="118" width="124" height="58" rx="3" fill="#faf9f7" stroke="#1a1a1a" stroke-width="1.15" />
+        <text x="514" y="143" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="14.5" font-weight="500" fill="#1a1a1a">Source Setting</text>
+        <text x="514" y="161" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.3" fill="#857f77">true outcome</text>
+
+        <rect x="628" y="118" width="124" height="58" rx="3" fill="#faf9f7" stroke="#1a1a1a" stroke-width="1.15" />
+        <text x="690" y="143" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="14.5" font-weight="500" fill="#1a1a1a">Selected Units</text>
+        <text x="690" y="161" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.3" fill="#857f77">true outcome</text>
+
+        <rect x="804" y="118" width="108" height="58" rx="3" fill="#faf9f7" stroke="#1a1a1a" stroke-width="1.25" />
+        <text x="858" y="143" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="14.5" font-weight="600" fill="#1a1a1a">Recorded Proxy</text>
+        <text x="858" y="161" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.3" fill="#55524d">observed data</text>
+
+        <!-- Bottom Reverse Identification Brackets -->
+        <path d="M 848 180 L 848 206 L 708 206 L 708 183" fill="none" stroke="#8b0000" stroke-width="1.25" marker-end="url(#arr-crimson)" />
+        <text x="778" y="224" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="13" font-weight="600" fill="#8b0000">1. Undo Proxy Error</text>
+        <text x="778" y="237" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.2" fill="#857f77">sensitivity band</text>
+
+        <path d="M 672 180 L 672 206 L 532 206 L 532 183" fill="none" stroke="#8b0000" stroke-width="1.25" marker-end="url(#arr-crimson)" />
+        <text x="602" y="224" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="13" font-weight="600" fill="#8b0000">2. Undo Selection</text>
+        <text x="602" y="237" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.2" fill="#857f77">sensitivity band</text>
+
+        <path d="M 496 180 L 496 206 L 356 206 L 356 183" fill="none" stroke="#8b0000" stroke-width="1.25" marker-end="url(#arr-crimson)" />
+        <text x="426" y="224" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="13" font-weight="600" fill="#8b0000">3. Undo Shift</text>
+        <text x="426" y="237" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.2" fill="#857f77">sensitivity band</text>
+
+        <text x="588" y="264" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#8b0000">&larr; REVERSE IDENTIFICATION CHAIN (EACH STEP ANCHORS THE NEXT)</text>
+      </svg>
+
+      <p>
+        <span class="summary-label">Problem</span>
+        Evaluation data often differs from the target setting in three ways at once: <strong>distribution shift</strong> between source and target environments, <strong>selective labels</strong> where outcomes are observed only for units chosen for follow-up, and <strong>outcome measurement error</strong> where a proxy label stands in for the true construct.
+      </p>
+      <p>
+        <span class="summary-label">Approach</span>
+        We model all three as unobserved confounding between the true outcome and a binary data-gating indicator (in-distribution, selected, accurately measured). For binary outcomes, the performance gap is affine in the pointwise conditional-mean gap, which telescopes into one term per obstacle governed by a marginal sensitivity model along the reverse data-gating chain.
+      </p>
+      <p>
+        <span class="summary-label">Results</span>
+        Adding single-obstacle bounds around the observed proxy is not a valid bound because upstream biases shift the baseline anchor where downstream tilts peak, while maximizing each bound separately is often vacuous. Jointly analyzing the chain yields closed-form sharp bounds; assuming dependent latent drivers adds no tightening, whereas simulations indicate independent drivers narrow the interval on a conjectured region.
+      </p>
+    </div>
   </div>
 
   <div class="paper">
@@ -336,6 +505,15 @@
 <footer>
   Last updated November 2026.
 </footer>
+
+<script>
+  function toggleSummary(id, btn) {
+    const el = document.getElementById(id);
+    const isOpen = el.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen);
+    btn.textContent = isOpen ? 'hide summary' : 'summary';
+  }
+</script>
 
 </body>
 </html>
