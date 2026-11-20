@@ -149,7 +149,8 @@
       border-bottom: 1px solid var(--rule);
     }
 
-    figure.diagram svg {
+    figure.diagram svg,
+    figure.diagram img {
       width: 100%;
       height: auto;
       display: block;
@@ -361,109 +362,10 @@
   </header>
 
   <figure class="diagram">
-    <svg viewBox="0 0 920 315" role="img" aria-label="Shared confounding structure and data-gating order versus reverse sensitivity identification chain">
-      <defs>
-        <marker id="arr-ink" viewBox="0 0 10 8" refX="8.5" refY="4" markerWidth="6.5" markerHeight="5.2" orient="auto">
-          <path d="M 0 0.5 L 9.5 4 L 0 7.5 L 2.2 4 z" fill="#1a1a1a" />
-        </marker>
-        <marker id="arr-muted" viewBox="0 0 10 8" refX="8.5" refY="4" markerWidth="6.5" markerHeight="5.2" orient="auto">
-          <path d="M 0 0.5 L 9.5 4 L 0 7.5 L 2.2 4 z" fill="#6b655d" />
-        </marker>
-        <marker id="arr-crimson" viewBox="0 0 10 8" refX="8.5" refY="4" markerWidth="6.5" markerHeight="5.2" orient="auto">
-          <path d="M 0 0.5 L 9.5 4 L 0 7.5 L 2.2 4 z" fill="#8b0000" />
-        </marker>
-      </defs>
-
-      <!-- Panel (a) Shared Confounding Structure -->
-      <text x="122" y="18" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#857f77" letter-spacing="0.04em">(a) Shared Confounding Structure</text>
-
-      <!-- Unobserved Factor Node -->
-      <rect x="44" y="48" width="156" height="44" rx="22" fill="#f2f0ec" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="4 3" />
-      <text x="122" y="68" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="14" font-style="italic" fill="#1a1a1a">Unobserved Factor</text>
-      <text x="122" y="83" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#857f77">latent confounder</text>
-
-      <!-- Fork Arrows -->
-      <line x1="94" y1="92" x2="60" y2="148" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#arr-ink)" />
-      <line x1="150" y1="92" x2="184" y2="148" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#arr-ink)" />
-
-      <!-- True Outcome Node -->
-      <rect x="10" y="154" width="102" height="44" rx="4" fill="#faf9f7" stroke="#1a1a1a" stroke-width="1.2" />
-      <text x="61" y="174" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="13.5" font-weight="500" fill="#1a1a1a">True Outcome</text>
-      <text x="61" y="189" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.2" fill="#857f77">construct</text>
-
-      <!-- Data-Gating Indicator Node -->
-      <rect x="126" y="154" width="116" height="44" rx="4" fill="#faf9f7" stroke="#1a1a1a" stroke-width="1.2" />
-      <text x="184" y="174" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="13.5" font-weight="500" fill="#1a1a1a">Data-Gating</text>
-      <text x="184" y="189" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.2" fill="#857f77">indicator</text>
-
-      <text x="122" y="232" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="12.5" font-style="italic" fill="#55524d">in-distribution &middot; selected &middot; measured</text>
-      <text x="122" y="252" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.8" fill="#8b0000">1 sensitivity model per link</text>
-
-      <!-- Vertical Divider -->
-      <line x1="258" y1="10" x2="258" y2="298" stroke="#d8d3c8" stroke-width="1" />
-
-      <!-- Panel (b) Data-Gating Order vs. Reverse Identification -->
-      <text x="588" y="18" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#857f77" letter-spacing="0.04em">(b) Data-Gating Order vs. Reverse Identification</text>
-
-      <!-- Top Forward Data-Gating Header -->
-      <text x="588" y="44" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b655d">DATA-GATING ORDER (HOW EVALUATION DATA IS FILTERED &amp; RECORDED) &rarr;</text>
-
-      <!-- Top Forward Brackets (36px stem separation inside each box) -->
-      <!-- 1. Distribution Shift: 356 -> 496 -->
-      <text x="426" y="68" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="13" font-weight="500" fill="#1a1a1a">1. Distribution Shift</text>
-      <text x="426" y="81" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.2" fill="#857f77">source differs from target</text>
-      <path d="M 356 116 L 356 90 L 496 90 L 496 113" fill="none" stroke="#6b655d" stroke-width="1.15" marker-end="url(#arr-muted)" />
-
-      <!-- 2. Selective Labels: 532 -> 672 -->
-      <text x="602" y="68" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="13" font-weight="500" fill="#1a1a1a">2. Selective Labels</text>
-      <text x="602" y="81" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.2" fill="#857f77">subset gated for outcomes</text>
-      <path d="M 532 116 L 532 90 L 672 90 L 672 113" fill="none" stroke="#6b655d" stroke-width="1.15" marker-end="url(#arr-muted)" />
-
-      <!-- 3. Measurement Error: 708 -> 848 -->
-      <text x="778" y="68" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="13" font-weight="500" fill="#1a1a1a">3. Measurement Error</text>
-      <text x="778" y="81" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.2" fill="#857f77">proxy recorded instead</text>
-      <path d="M 708 116 L 708 90 L 848 90 L 848 113" fill="none" stroke="#6b655d" stroke-width="1.15" marker-end="url(#arr-muted)" />
-
-      <!-- Four Stage Boxes (width=124, gap=52) -->
-      <!-- Box 1: Target Setting (x=276..400, center=338) -->
-      <rect x="276" y="120" width="124" height="58" rx="3" fill="#faf9f7" stroke="#8b0000" stroke-width="1.5" />
-      <text x="338" y="145" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="14.5" font-weight="600" fill="#1a1a1a">Target Setting</text>
-      <text x="338" y="163" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.3" fill="#8b0000">true outcome (goal)</text>
-
-      <!-- Box 2: Source Setting (x=452..576, center=514) -->
-      <rect x="452" y="120" width="124" height="58" rx="3" fill="#faf9f7" stroke="#1a1a1a" stroke-width="1.15" />
-      <text x="514" y="145" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="14.5" font-weight="500" fill="#1a1a1a">Source Setting</text>
-      <text x="514" y="163" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.3" fill="#857f77">true outcome</text>
-
-      <!-- Box 3: Selected Units (x=628..752, center=690) -->
-      <rect x="628" y="120" width="124" height="58" rx="3" fill="#faf9f7" stroke="#1a1a1a" stroke-width="1.15" />
-      <text x="690" y="145" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="14.5" font-weight="500" fill="#1a1a1a">Selected Units</text>
-      <text x="690" y="163" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.3" fill="#857f77">true outcome</text>
-
-      <!-- Box 4: Recorded Proxy (x=804..912, center=858) -->
-      <rect x="804" y="120" width="108" height="58" rx="3" fill="#f2f0ec" stroke="#1a1a1a" stroke-width="1.25" />
-      <text x="858" y="145" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="14.5" font-weight="600" fill="#1a1a1a">Recorded Proxy</text>
-      <text x="858" y="163" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.3" fill="#55524d">observed data</text>
-
-      <!-- Bottom Reverse Identification Brackets (Crimson, right-to-left) -->
-      <!-- Step 1: Undo Measurement Error: 848 -> 708 -->
-      <path d="M 848 182 L 848 208 L 708 208 L 708 185" fill="none" stroke="#8b0000" stroke-width="1.25" marker-end="url(#arr-crimson)" />
-      <text x="778" y="226" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="13" font-weight="600" fill="#8b0000">1. Undo Proxy Error</text>
-      <text x="778" y="239" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.2" fill="#857f77">sensitivity band</text>
-
-      <!-- Step 2: Undo Selective Labels: 672 -> 532 -->
-      <path d="M 672 182 L 672 208 L 532 208 L 532 185" fill="none" stroke="#8b0000" stroke-width="1.25" marker-end="url(#arr-crimson)" />
-      <text x="602" y="226" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="13" font-weight="600" fill="#8b0000">2. Undo Selection</text>
-      <text x="602" y="239" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.2" fill="#857f77">sensitivity band</text>
-
-      <!-- Step 3: Undo Distribution Shift: 496 -> 356 -->
-      <path d="M 496 182 L 496 208 L 356 208 L 356 185" fill="none" stroke="#8b0000" stroke-width="1.25" marker-end="url(#arr-crimson)" />
-      <text x="426" y="226" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="13" font-weight="600" fill="#8b0000">3. Undo Shift</text>
-      <text x="426" y="239" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.2" fill="#857f77">sensitivity band</text>
-
-      <text x="588" y="264" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#8b0000">&larr; REVERSE IDENTIFICATION CHAIN (EACH STEP ANCHORS THE NEXT)</text>
-      <text x="588" y="288" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="13" font-style="italic" fill="#55524d">For binary outcomes, risk is affine in conditional expectations; joint analysis enforces one consistent distribution across the chain (and may tighten further under independent drivers).</text>
-    </svg>
+    <img
+      src="fig.jpg"
+      alt="Shared confounding structure and data-gating order versus reverse sensitivity identification chain"
+    />
     <figcaption>
       <strong>Figure 1.</strong> (a) Distribution shift, selective labels, and outcome measurement error share a common confounding structure between the true outcome and a binary data-gating indicator. (b) Because these obstacles filter and record evaluation data sequentially from left to right, partial identification must undo them in reverse order from right to left—propagating uncertainty bands jointly rather than adding separate bounds around the observed proxy.
     </figcaption>
