@@ -11,33 +11,22 @@
 
     :root {
       --fg: #1a1a1a;
-      --fg-secondary: #555;
-      --fg-tertiary: #888;
+      --fg-secondary: #55524d;
+      --fg-tertiary: #857f77;
       --bg: #faf9f7;
+      --bg-tint: #f2f0ec;
       --accent: #8b0000;
       --link: #1a4a6e;
       --link-hover: #8b0000;
-      --rule: #ccc;
+      --rule: #d8d3c8;
       --max-w: 800px;
       --body-size: 20px;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --fg: #d4d0c8;
-        --fg-secondary: #a09a8e;
-        --fg-tertiary: #787068;
-        --bg: #1c1b19;
-        --accent: #c06060;
-        --link: #88b4d0;
-        --link-hover: #c06060;
-        --rule: #3a3830;
-      }
     }
 
     html {
       font-size: var(--body-size);
       -webkit-font-smoothing: antialiased;
+      color-scheme: light;
     }
 
     body {
@@ -48,6 +37,20 @@
       padding: 4rem 1.5rem 6rem;
       max-width: var(--max-w);
       margin: 0 auto;
+    }
+
+    /* Links global */
+    a {
+      color: var(--link);
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+      text-underline-offset: 2px;
+      transition: color 0.15s, text-decoration-color 0.15s;
+    }
+
+    a:hover {
+      color: var(--link-hover);
+      text-decoration-color: var(--link-hover);
     }
 
     /* Header */
@@ -152,8 +155,16 @@
       color: var(--fg-tertiary);
     }
 
+    .paper-venue a {
+      font-style: normal;
+      color: var(--link);
+    }
+
+    .paper-venue a:hover {
+      color: var(--link-hover);
+    }
+
     .me {
-      /* not bold, just distinguish slightly */
       text-decoration: underline;
       text-decoration-color: var(--rule);
       text-underline-offset: 2px;
@@ -199,20 +210,6 @@
       font-size: 0.8rem;
       color: var(--fg-tertiary);
       font-family: 'JetBrains Mono', monospace;
-    }
-
-    /* Links global */
-    a {
-      color: var(--link);
-      text-decoration: underline;
-      text-decoration-color: var(--rule);
-      text-underline-offset: 2px;
-      transition: color 0.15s;
-    }
-
-    a:hover {
-      color: var(--link-hover);
-      text-decoration-color: var(--link-hover);
     }
 
     /* Responsive */
@@ -294,7 +291,7 @@
 <section>
   <h2>Readings &amp; Recommendations</h2>
 
-<div class="reading">
+  <div class="reading">
     <div class="reading-title"><a href="https://www.goodreads.com/book/show/53609419-suffering-focused-ethics">Suffering-Focused Ethics: Defense and Implications</a></div>
     <div class="reading-author">Magnus Vinding</div>
     <div class="reading-note">A key part of my worldview and a challenge for us to make things better for all sentient beings.</div>
@@ -323,7 +320,6 @@
     <div class="reading-author">Saunders MacLane</div>
     <div class="reading-note">Many people perceive math as some arcane truths delivered by the divine. MacLane illustrates how math arises from normal human activity, along with a natural affinity towards abstraction. May offer a newfound appreciation for math, without requiring you to solve any equations or do any proofs.</div>
   </div>
-  
 </section>
 
 <section>
@@ -339,7 +335,7 @@
 </section>
 
 <footer>
-  Last updated October 2026.
+  Last updated November 2026.
 </footer>
 
 </body>
