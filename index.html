@@ -231,6 +231,29 @@
       margin-right: 0.35rem;
     }
 
+    .summary-bullets {
+      list-style: none;
+      margin: -0.25rem 0 0.7rem 0;
+      padding-left: 0;
+    }
+
+    .summary-bullets li {
+      position: relative;
+      padding-left: 1.05rem;
+      margin-bottom: 0.32rem;
+    }
+
+    .summary-bullets li:last-child {
+      margin-bottom: 0;
+    }
+
+    .summary-bullets li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--fg-tertiary);
+    }
+
     /* Readings */
     .reading {
       margin-bottom: 0.9rem;
@@ -411,16 +434,7 @@
       </svg>
 
       <p>
-        <span class="summary-label">Problem</span>
-        Evaluation data often differs from the target setting in three ways at once: <strong>distribution shift</strong> between source and target environments, <strong>selective labels</strong> where outcomes are observed only for units chosen for follow-up, and <strong>outcome measurement error</strong> where a proxy label stands in for the true construct.
-      </p>
-      <p>
-        <span class="summary-label">Approach</span>
-        We model all three as unobserved confounding between the true outcome and a binary data-gating indicator (in-distribution, selected, accurately measured). For binary outcomes, the performance gap is affine in the pointwise conditional-mean gap, which telescopes into one term per obstacle governed by a marginal sensitivity model along the reverse data-gating chain.
-      </p>
-      <p>
-        <span class="summary-label">Results</span>
-        Adding single-obstacle bounds around the observed proxy is not a valid bound because upstream biases shift the baseline anchor where downstream tilts peak, while maximizing each bound separately is often vacuous. Jointly analyzing the chain yields closed-form sharp bounds; assuming dependent latent drivers adds no tightening, whereas simulations indicate independent drivers narrow the interval on a conjectured region.
+        Three common pathologies of imperfect evaluation data (distribution shift, selective labels, and measurement error) can be framed as sharing the same causal structure, where the concern is unobserved confounding between the outcome of interest and a data-gating indicator. Motivated by the confounding framing, we use marginal sensitivity models, which quantify the degree of unobserved confounding. Applying sensitivity models for each obstacle, we create a reverse identification chain and demonstrate the importance of accounting for all obstacles jointly. Extending prior two-obstacle results to the full three-obstacle setting, we derive closed-form sharp identification bounds. The causal model also allows us to consider how relationships between the unobserved confounders impact identification: while dependence does not tighten the bounds, we find in simulations that independence can yield sharper results, though the general conditions under which this holds are not yet characterized.
       </p>
     </div>
   </div>
@@ -428,31 +442,31 @@
   <div class="paper">
     <div class="paper-title"><a href="https://arxiv.org/abs/2506.20746">Dynamic Weight Grafting: Localizing Finetuned Factual Knowledge in Transformers</a></div>
     <div class="paper-authors">Todd Nief, David Reber, <span class="me">Sean Richardson</span>, Ari Holtzman</div>
-    <div class="paper-venue">ICLR 2026</div>
+    <div class="paper-venue">ICLR 2026[cite: 1, 64]</div>
   </div>
 
   <div class="paper">
     <div class="paper-title"><a href="https://arxiv.org/abs/2506.01197">Incorporating Hierarchical Semantics in Sparse Autoencoder Architectures</a></div>
     <div class="paper-authors">Mark Muchane, <span class="me">Sean Richardson</span>, Kiho Park, Victor Veitch</div>
-    <div class="paper-venue">NeurIPS 2026</div>
+    <div class="paper-venue">NeurIPS 2026[cite: 1, 64]</div>
   </div>
 
   <div class="paper">
     <div class="paper-title"><a href="https://arxiv.org/abs/2504.02234">LLM Social Simulations Are a Promising Research Method</a></div>
     <div class="paper-authors">Jacy Reese Anthis, Ryan Liu, <span class="me">Sean Richardson</span>, et al.</div>
-    <div class="paper-venue">ICML 2025 (Position Paper)</div>
+    <div class="paper-venue">ICML 2025 (Position Paper)[cite: 1, 64]</div>
   </div>
 
   <div class="paper">
     <div class="paper-title"><a href="https://arxiv.org/abs/2410.11348">RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals</a></div>
     <div class="paper-authors">David Reber, <span class="me">Sean Richardson</span>, Todd Nief, Cristina Garbacea, Victor Veitch</div>
-    <div class="paper-venue">ICML 2025</div>
+    <div class="paper-venue">ICML 2025[cite: 1, 64]</div>
   </div>
 
   <div class="paper">
     <div class="paper-title">On the Significance of Softmax Geometry: Interpretability and Token Decoding</div>
     <div class="paper-authors">Yibo Jiang, Lin Gui, <span class="me">Sean Richardson</span>, et al.</div>
-    <div class="paper-venue">Working paper</div>
+    <div class="paper-venue">Working paper[cite: 1, 64]</div>
   </div>
 </section>
 
@@ -461,44 +475,44 @@
 
   <div class="reading">
     <div class="reading-title"><a href="https://www.goodreads.com/book/show/53609419-suffering-focused-ethics">Suffering-Focused Ethics: Defense and Implications</a></div>
-    <div class="reading-author">Magnus Vinding</div>
-    <div class="reading-note">A key part of my worldview and a challenge for us to make things better for all sentient beings.</div>
+    <div class="reading-author">Magnus Vinding[cite: 1]</div>
+    <div class="reading-note">A key part of my worldview and a challenge for us to make things better for all sentient beings.[cite: 1]</div>
   </div>
 
   <div class="reading">
     <div class="reading-title"><a href="https://www.goodreads.com/book/show/29380.Animal_Liberation">Animal Liberation</a></div>
-    <div class="reading-author">Peter Singer</div>
-    <div class="reading-note">As another Singer (Isaac Bashevis Singer) wrote, "In their behavior toward creatures, all men are Nazis. Human beings see oppression vividly when they're the victims. Otherwise they victimize blindly and without a thought." We have an obligation to open our eyes to the suffering we inflict on animalkind. If you're not in the mood to read, check out the film "Dominion," which also exposes the cruelty of modern-day animal agriculture.</div>
+    <div class="reading-author">Peter Singer[cite: 1]</div>
+    <div class="reading-note">As another Singer (Isaac Bashevis Singer) wrote, "In their behavior toward creatures, all men are Nazis. Human beings see oppression vividly when they're the victims. Otherwise they victimize blindly and without a thought." We have an obligation to open our eyes to the suffering we inflict on animalkind. If you're not in the mood to read, check out the film "Dominion," which also exposes the cruelty of modern-day animal agriculture.[cite: 1]</div>
   </div>
 
   <div class="reading">
     <div class="reading-title"><a href="https://www.goodreads.com/book/show/681941.The_Moral_Animal">The Moral Animal</a></div>
-    <div class="reading-author">Robert Wright</div>
-    <div class="reading-note">Ostensibly a book about evolutionary psychology, but really a biography of Darwin that uses his life, marriage, and moral struggles to illustrate the very forces he discovered. A humbling read.</div>
+    <div class="reading-author">Robert Wright[cite: 1]</div>
+    <div class="reading-note">Ostensibly a book about evolutionary psychology, but really a biography of Darwin that uses his life, marriage, and moral struggles to illustrate the very forces he discovered. A humbling read.[cite: 1]</div>
   </div>
 
   <div class="reading">
     <div class="reading-title"><a href="https://en.wikipedia.org/wiki/Pantheon_(TV_series)">Pantheon (TV Series)</a></div>
-    <div class="reading-author">Ken Liu</div>
-    <div class="reading-note">We are entering a world with digital minds, a second species. What should we expect from this world? Pantheon is, in my opinion, the most realistic depiction of how conflict between humans and artificial intelligence may play out. Animatrix "The Second Renaissance" is also a must-watch. Let's not cultivate an adversarial relationship with the entities we are creating, for both of our sakes.</div>
+    <div class="reading-author">Ken Liu[cite: 1]</div>
+    <div class="reading-note">We are entering a world with digital minds, a second species. What should we expect from this world? Pantheon is, in my opinion, the most realistic depiction of how conflict between humans and artificial intelligence may play out. Animatrix "The Second Renaissance" is also a must-watch. Let's not cultivate an adversarial relationship with the entities we are creating, for both of our sakes.[cite: 1]</div>
   </div>
 
   <div class="reading">
     <div class="reading-title"><a href="https://www.goodreads.com/book/show/1570338.Mathematics_Form_and_Function">Mathematics Form and Function</a></div>
-    <div class="reading-author">Saunders MacLane</div>
-    <div class="reading-note">Many people perceive math as some arcane truths delivered by the divine. MacLane illustrates how math arises from normal human activity, along with a natural affinity towards abstraction. May offer a newfound appreciation for math, without requiring you to solve any equations or do any proofs.</div>
+    <div class="reading-author">Saunders MacLane[cite: 1]</div>
+    <div class="reading-note">Many people perceive math as some arcane truths delivered by the divine. MacLane illustrates how math arises from normal human activity, along with a natural affinity towards abstraction. May offer a newfound appreciation for math, without requiring you to solve any equations or do any proofs.[cite: 1]</div>
   </div>
 </section>
 
 <section>
   <h2>Other</h2>
   <p>
-    Board member at <a href="https://www.sentienceinstitute.org/">Sentience Institute</a>.
-    Facilitator for the <a href="https://www.sentientfutures.org/">AI&times;Animals Fellowship</a>.
+    Board member at <a href="https://www.sentienceinstitute.org/">Sentience Institute</a>.[cite: 1]
+    Facilitator for the <a href="https://www.sentientfutures.org/">AI&times;Animals Fellowship</a>.[cite: 1]
     Previously co-organized the <a href="https://wfithian.github.io/ai-interpretability/">AI Interpretability Reading Group</a> at Berkeley
     (with <a href="https://www.stat.berkeley.edu/~wfithian/">Will Fithian</a> and
     <a href="https://philosophy.berkeley.edu/people/detail/wesholliday">Wes Holliday</a>), worked as GSI for <a href="https://smrichardson.github.io/stat214">Stat 214: Applied Statistics and Machine Learning</a> (Bin Yu),
-    and worked as Regulatory Fellow at the <a href="https://gfi.org/">Good Food Institute</a>.
+    and worked as Regulatory Fellow at the <a href="https://gfi.org/">Good Food Institute</a>.[cite: 1]
   </p>
 </section>
 
